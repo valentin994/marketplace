@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import uuid from 'uuid';
-
-import { Row, Col, Card, Space, Divider, Avatar, Modal, Button } from 'antd';
+import { Row, Col, Card, Divider, Modal, Button } from 'antd';
 import '../index.css'
 
-import { WindowsOutlined, PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import { getServices } from '../actions/serviceActions';
+import { getServices, deleteService } from '../actions/serviceActions';
 import PropTypes from 'prop-types';
+import ServiceModal from '../components/serviceModal';
 
 class Services extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getServices();
     }
 
@@ -40,19 +37,21 @@ class Services extends Component {
         });
     };
 
-
+    onDeleteClick = (id) => {
+        this.props.deleteService(id);
+    }
 
     render() {
-        
-
         const serviceList = this.props.service.services.map((service) =>
             <Col xs={24} md={8} style={{ display: 'flex' }}>
-                <Card key={service.id} style={{ width: '100%' }} title={service.name} bordered={false} hoverable="true" onClick={this.showModal}>
-                    <h3>750 Hours</h3>
-                    <h5>Quad Core, 16GB RAM, 1TB Storage</h5>
+                <Card key={service._id} style={{ width: '100%' }} title={service.name} bordered={false} hoverable="true" onClick={this.showModal}>
+                    <h3>{service.time} Hours</h3>
+                    <p>service.id {service._id}</p>
+                    <h5>{service.metrics}</h5>
                     <Divider />
-                    <p>Create Windows virtual machines with on-demand capacity in seconds.</p>
+                    <p>{service.description}</p>
                 </Card>
+                <Button onClick={this.onDeleteClick.bind(this, service._id)}>Delete dis</Button>
             </Col>
         );
 
@@ -62,9 +61,9 @@ class Services extends Component {
                 <Divider />
                 <div className="site-card-wrapper">
                     <Row gutter={[16, 16]}>
-         
+
                         {serviceList}
-                    
+
                     </Row>
                     <Modal
                         title="Add Service"
@@ -76,7 +75,7 @@ class Services extends Component {
                         <p>Validate your request</p>
                         <p>And usage</p>
                     </Modal>
-
+                    <ServiceModal></ServiceModal>
                 </div>
             </div>
         );
@@ -89,7 +88,7 @@ Services.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-    service:state.service
+    service: state.service
 })
 
-export default connect(mapStateToProps, { getServices })(Services);
+export default connect(mapStateToProps, { getServices, deleteService })(Services);

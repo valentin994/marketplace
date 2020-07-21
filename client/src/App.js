@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 import './index.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,

@@ -1,24 +1,34 @@
-import uuid from 'uuid';
-import { GET_SERVICES, ADD_SERVICES, DELETE_SERVICE } from '../actions/types';
+import { GET_SERVICES, ADD_SERVICES, DELETE_SERVICE, SERVICES_LOADING } from '../actions/types';
 
 
 const initialState = {
-    services: [
-        { id: uuid(), name: 'Virtual Machine 1' },
-        { id: uuid(), name: 'Virtual Machine 2' },
-        { id: uuid(), name: 'Virtual Machine 3' },
-        { id: uuid(), name: 'Virtual Machine 4' },
-        { id: uuid(), name: 'Virtual Machine 5' },
-        { id: uuid(), name: 'Virtual Machine 6' },
-    ]
+    services: [],
+    loading: false
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case GET_SERVICES:
             return {
-                ...state
-            }
+                ...state,
+                services: action.payload,
+                loading: false
+            };
+        case DELETE_SERVICE:
+            return {
+                ...state,
+                services: state.services.filter(service => service._id !== action.payload)
+            };
+        case ADD_SERVICES:
+            return {
+                ...state,
+                services: [action.payload, ...state.services]
+            };
+        case SERVICES_LOADING:
+            return {
+                ...state, 
+                loading: true
+            };
         default:
             return state;
     }
