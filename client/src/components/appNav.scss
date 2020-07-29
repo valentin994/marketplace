@@ -1,0 +1,37 @@
+@import "../index.scss";
+
+body {
+  background-color: $primary-layer;
+  color: $text-primary;
+  font-family: Fira Code;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  a {
+    color: $text-darker;
+    text-decoration: none;
+    padding: 1rem;
+    &:hover{
+      color:$text-primary
+    }
+  }
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+  }
+}
+
+.active{
+  color: $text-primary;
+}
+
+.content {
+  display: flex;
+  width: 75%;
+  margin-left: 12.5%;
+  align-content: center;
+  justify-content: center;
+}

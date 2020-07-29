@@ -8,6 +8,18 @@ const ServiceSchema = new Schema({
         type: String,
         required: true
     },
+    time:{
+        type: Number,
+    },
+    metrics: {
+        type: String,
+    },
+    price:{
+        type:Number,
+    },
+    description: {
+        type: String,
+        },
     date: {
         type: Date,
         default: Date.now
