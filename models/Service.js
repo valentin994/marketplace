@@ -20,6 +20,22 @@ const ServiceSchema = new Schema({
     description: {
         type: String,
         },
+    active: {
+        type: Boolean,
+        default:false
+    },
+    timeActivated: {
+        type: Number,
+        default: 0
+    },
+    timeDeactivated: {
+        type: Number,
+        default: 0
+    },
+    debt: {
+        type: Number,
+        default: 0
+    },
     date: {
         type: Date,
         default: Date.now

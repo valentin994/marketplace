@@ -1,34 +1,37 @@
 @import "../index.scss";
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
+  color: $text-link;
+}
+
+ul {
+  list-style-type: none;
+  li {
+    padding: 1rem;
+  }
+}
+
+h2 {
+  color: #288964;
+}
+
+.content {
+  p {
+    color: $text-secondary;
+  }
+  button {
+    background-color: transparent;
     color: $text-link;
-}
-
-ul{
-    list-style-type: none;
-    li{
-        padding: 1rem;
+    font-family: inherit;
+    border: none;
+    padding: 0.5rem;
+    transition: 0.5s;
+    font-weight: bold;
+    &:hover {
+      background-color: $primary-layer;
+      color: $text-primary;
+      border-color: $primary-layer;
     }
-}
-
-.content{
-    p{
-        color: $text-secondary;
-    }
-    button{
-        background-color: transparent;
-        color:$text-link;
-        font-family: inherit;
-        border: solid thin $text-link;
-        padding: 0.5rem;
-        transition: 0.5s;
-        font-weight: bold;
-        border-radius: 5%;
-        &:hover{
-            background-color: $text-primary;
-            color:$primary-layer;
-            border-color: $primary-layer;
-        }
-    }
+  }
 }
